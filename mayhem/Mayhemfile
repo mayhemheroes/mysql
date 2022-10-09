@@ -1,8 +1,8 @@
 # Namespaced project name that the target belongs to
-project: rclone
+project: mysql
 
 # Target name (should be unique within the project)
-target: rclone-fspath
+target: standard-fuzz
 
 # Base image to run the binary in.
 # image: ghcr.io/nottirb/rclone:latest
