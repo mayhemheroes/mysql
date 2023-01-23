@@ -1,0 +1,4 @@
+project: mysql
+target: standard-fuzz
+cmds:
+  - cmd: ./fuzz.libfuzzer
