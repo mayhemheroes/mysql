@@ -1,4 +1,4 @@
 project: mysql
 target: standard-fuzz
 cmds:
-  - cmd: ./fuzz.libfuzzer
+  - cmd: /fuzz.test -test.fuzz=FuzzFormatDSN -test.fuzzcachedir=/tmp/fuzz

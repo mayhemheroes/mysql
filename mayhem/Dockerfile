@@ -1,11 +1,12 @@
 # Build in a stock Go builder container
-FROM fuzzers/go-fuzz:1.2.0 as builder
+FROM golang:1.21 AS builder
+
+ENV GOTOOLCHAIN=auto
 
 ADD . /mysql
 WORKDIR /mysql
 
-RUN GO_ENABLED=0 go-fuzz-build -libfuzzer -o fuzz.a .
-RUN clang -fsanitize=fuzzer fuzz.a -o fuzz.libfuzzer
+RUN go test -c -fuzz=FuzzFormatDSN -o fuzz.test .
 
-FROM ubuntu:20.04
-COPY --from=builder /mysql/fuzz.libfuzzer /
+FROM ubuntu:22.04
+COPY --from=builder /mysql/fuzz.test /fuzz.test
